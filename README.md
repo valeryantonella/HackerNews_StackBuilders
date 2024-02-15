@@ -1,40 +1,32 @@
-# Proyecto de Scraping de Hacking News
+# Hacking News Web Scraping Project
 
-Este proyecto consiste en una aplicación que realiza scraping de noticias desde el sitio web "https://news.ycombinator.com/" y proporciona una interfaz para ver las últimas noticias, filtrarlas y mostrar detalles adicionales.
+This project consists of an application that scrapes news from the website "https://news.ycombinator.com/" and provides an interface to view the latest news, filter it and display additional details.
 
-## Instalación
+## Installation
 
-1. Clona este repositorio en tu máquina local.
-2. Navega hasta el directorio del proyecto.
-3. Ejecuta el siguiente comando para instalar las dependencias necesarias:
+Clone this repository to your local machine.
+Navigate to the project directory.
+Run the following command to install the necessary dependencies: npm install
 
-```bash
-npm install
-```
+## Usage
 
-## Uso
-
-Una vez instaladas las dependencias, puedes ejecutar la aplicación con el siguiente comando:
-
-```bash
+Once the dependencies are installed, you can run the application with the following command:
 npm run dev
-```
 
-Esto iniciará el servidor y podrás acceder a la aplicación desde tu navegador web visitando la dirección "http://localhost:3000".
+This will start the server and you can access the application from your web browser by visiting "http://localhost:3000".
 
-## Funcionalidades
+## Features
 
-- **Listado de Noticias:** Se muestra una lista de las últimas noticias extraídas de "https://news.ycombinator.com/".
-- **Filtrado:** Los usuarios pueden filtrar las noticias por diferentes criterios, como puntos, comentarios, etc.
+- **News Listing:** Displays a list of the latest news fetched from "https://news.ycombinator.com/".
+- **Filtering:** Users can filter the news by different criteria such as points, comments, etc.
+  
+## Contribution
 
-## Contribución
+If you wish to contribute to the development of this application, you should follow these steps:
 
-Si se desea contribuir al desarrollo de esta aplicación, se debe seguir estos pasos:
-
-1. Haz un fork del repositorio.
-2. Crea una nueva rama para tu funcionalidad (`git checkout -b feature/nueva-funcionalidad`).
-3. Realiza tus cambios y asegúrate de que el código siga las convenciones establecidas.
-4. Haz commit semántico de tus cambios (`git commit -am 'feat: añadir nueva funcionalidad'`).
-5. Sube tus cambios a tu repositorio remoto (`git push origin feature/nueva-funcionalidad`).
-6. Crea un nuevo pull request desde tu rama a la rama principal del repositorio original.
-
+1. Fork the repository.
+2. Create a new branch for your feature (git checkout -b feature/new-feature).
+3. Make your changes and ensure the code follows the established conventions.
+4. Semantically commit your changes (git commit -am 'feat: add new feature').
+5. Push your changes to your remote repository (git push origin feature/new-feature).
+6. Create a new pull request from your branch to the main branch of the original repository.
