@@ -14,6 +14,13 @@ app.get("/", (req, res) => {
 // Configurar ruta para obtener noticias
 app.get("/api/news", EntryController.getNews);
 
+app.get("/api/news/filterByComments", (req, res) =>
+  EntryController.filterByTitleLengthAndSortByComments(req, res)
+);
+
+app.get("/api/news/filterByPoints", (req, res) =>
+  EntryController.filterByTitleLengthAndSortByPoints(req, res)
+);
 // Iniciar el servidor
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

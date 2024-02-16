@@ -13,7 +13,8 @@ class EntryModel {
         const newsItems = [];
 
         elements.forEach((element) => {
-          const title = element.querySelector(".titleline").textContent;
+          const titleElement = element.querySelector(".title a");
+          const title = titleElement ? titleElement.textContent.trim() : "";
           const order = element.querySelector(".rank").textContent;
 
           // Verificar si el elemento existe antes de intentar acceder a sus propiedades
@@ -25,8 +26,8 @@ class EntryModel {
           const pointsMatch = fullPoints.match(/(\d+)\s+point/);
 
           // Verificar si se encontraron coincidencias y extraer los números
-          const comments = commentsMatch ? commentsMatch[1] + " comments" : "";
-          const points = pointsMatch ? pointsMatch[1] + " points" : "";
+          const comments = commentsMatch ? commentsMatch[1] : "";
+          const points = pointsMatch ? pointsMatch[1] : "";
 
           newsItems.push({
             title,
