@@ -8,7 +8,6 @@ class EntryController {
 
       // Devolver las noticias al cliente
       res.json(newsItems);
-      //console.log(newsItems);
     } catch (error) {
       console.error("Error:", error);
       res.status(500).json({ error: "Internal Server Error" });
@@ -31,7 +30,6 @@ class EntryController {
 
       // Devolver las entradas filtradas y ordenadas como respuesta en formato JSON
       res.json(sortedEntries);
-      console.log(sortedEntries);
     } catch (error) {
       console.error("Error filtering news:", error);
       // Enviar una respuesta de error al cliente
@@ -55,7 +53,6 @@ class EntryController {
 
       // Devolver las entradas filtradas y ordenadas como respuesta en formato JSON
       res.json(sortedEntries);
-      console.log(sortedEntries);
     } catch (error) {
       console.error("Error filtering news:", error);
       // Enviar una respuesta de error al cliente
