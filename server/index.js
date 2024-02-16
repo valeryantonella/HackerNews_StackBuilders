@@ -12,11 +12,11 @@ app.get("/", (req, res) => {
 app.get("/api/news", EntryController.getNews);
 
 app.get("/api/news/filterByComments", (req, res) =>
-  EntryController.filterByTitleLengthAndSortByComments(req, res)
+  EntryController.getNewsFilterMoreThanWordsSorted(req, res)
 );
 
 app.get("/api/news/filterByPoints", (req, res) =>
-  EntryController.filterByTitleLengthAndSortByPoints(req, res)
+  EntryController.getNewsFilterLessEqualWordsSorted(req, res)
 );
 
 const PORT = process.env.PORT || 3000;
