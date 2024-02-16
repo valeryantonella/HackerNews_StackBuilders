@@ -1,4 +1,3 @@
-// EntryModel.js
 import puppeteer from "puppeteer";
 
 class EntryModel {
@@ -17,14 +16,12 @@ class EntryModel {
           const title = titleElement ? titleElement.textContent.trim() : "";
           const order = element.querySelector(".rank").textContent;
 
-          // Verificar si el elemento existe antes de intentar acceder a sus propiedades
           const subtext = element.nextElementSibling.querySelector(".subline");
           const fullCommentsPoints = subtext ? subtext.textContent.trim() : "";
 
           const commentsMatch = fullCommentsPoints.match(/(\d+)\s+comment/);
           const pointsMatch = fullCommentsPoints.match(/(\d+)\s+point/);
 
-          // Verificar si se encontraron coincidencias y extraer los números
           const comments = commentsMatch ? commentsMatch[1] : "";
           const points = pointsMatch ? pointsMatch[1] : "";
 
