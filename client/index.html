@@ -5,12 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hacker News Scraper</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <h1>Hacking News</h1>
-    <button id="filterByMoreThan5WordsBtn">Filter by title with more than 5 words</button>
-    <button id="filterByLessThanOrEqual5WordsBtn">Filter by title with less than or equal to 5 words</button>
+    <div class="buttons">
+        <button id="filterByMoreThan5WordsBtn">Filter by title with more than 5 words</button>
+        <button id="filterByLessThanOrEqual5WordsBtn">Filter by title with less than or equal to 5 words</button>
+    </div>
     <ul id="newsList"></ul>
 
     <script src="script.js"></script>
