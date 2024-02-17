@@ -1,6 +1,7 @@
 # Hacking News Web Scraping Project
 
-This project consists of an application that scrapes news from the website "https://news.ycombinator.com/" and provides an interface to view the latest news, filter it and display additional details.
+## Overview
+This repository contains the code for a web crawler implemented in [insert your preferred language]. The web crawler is designed to extract information from the first 30 entries on Hacker News. It retrieves details such as the title, order number, number of comments, and points for each entry. Additionally, the crawler allows for filtering operations based on specific criteria, as outlined below.
 
 ## Installation
 
@@ -8,19 +9,40 @@ Clone this repository to your local machine.
 Navigate to the project directory.
 Run the following command to install the necessary dependencies: npm install
 
+## Features
+
+- **News Listing:** Scrapes data from Hacker News and displays a list of the latest news fetched from "https://news.ycombinator.com/".
+  Extracts the following information for each entry:
+    - Title 
+    - Order number
+    - Number of comments
+    - Points
+- **Filtering:** Users can filter the information by the number of words contained in the title of the news.
+    - Filters entries with more than five words in the title, ordered by the number of comments.
+    - Filters entries with less than or equal to five words in the title, ordered by points.
+ 
 ## Usage
 
-Once the dependencies are installed, you can run the application with the following command:
-npm run dev
+Once the dependencies are installed, you can run the application with the following command: npm run dev
 
 This will start the server and you can access the application from your web browser by visiting "http://localhost:3000".
 
-## Features
+## Testing
 
-- **News Listing:** Displays a list of the latest news fetched from "https://news.ycombinator.com/".
-- **Filtering:** Users can filter the information by the number of words contained in the title of the news
-- **Sorting:** The filtered news can be sorted by the number of comments if it has more than 5 words in the title, while if it has equal to or less than five words, it will be sorted by points.
-  
+To run the tests, execute the following command in your terminal: npm run test
+
+**Test Cases**
+- Filter Functions
+  Test cases for filter functions include:
+    1. Valid input arrays with various entries.
+    2. An empty input array to test edge cases.
+- Sorting Functions
+  Test cases for sorting functions include:
+    1. Valid input arrays with various entries.
+    2. An empty input array to test edge cases.
+
+These test cases cover the functionality of the filter and sorting functions under different scenarios, ensuring the reliability and correctness of the code.
+
 ## Contribution
 
 If you wish to contribute to the development of this application, you should follow these steps:
