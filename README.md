@@ -1,7 +1,7 @@
 # Hacking News Web Scraping Project
 
 ## Overview
-This repository contains the code for a web crawler implemented in [insert your preferred language]. The web crawler is designed to extract information from the first 30 entries on Hacker News. It retrieves details such as the title, order number, number of comments, and points for each entry. Additionally, the crawler allows for filtering operations based on specific criteria, as outlined below.
+This repository contains the code for a web crawler implemented in Javascript. The web crawler is designed to extract information from Hacker News entries. Retrieves details such as title, order number, number of comments and points for each entry. Additionally, the tracker allows you to filter trades based on specific criteria, as described below. Finally, it has an automated testing module carried out with Jest, which tests the different filtering and sorting functions.
 
 ## Installation
 
