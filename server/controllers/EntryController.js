@@ -1,10 +1,19 @@
-import EntryModel from "../models/EntryModel.js";
+const EntryModel = require("../models/EntryModel.js");
 
 class EntryController {
+  static async getNewsJson() {
+    try {
+      const newsItems = await EntryModel.scrapeNews();
+      return newsItems;
+    } catch (error) {
+      console.error("Error:", error);
+      throw error;
+    }
+  }
+
   static async getNews(req, res) {
     try {
       let newsItems = await EntryModel.scrapeNews();
-
       res.json(newsItems);
     } catch (error) {
       console.error("Error:", error);
@@ -12,17 +21,14 @@ class EntryController {
     }
   }
 
-  static async filterByTitleLengthAndSortByComments(req, res) {
+  static async getNewsFilterMoreThanWordsSorted(req, res) {
     try {
-      const newsItems = await EntryModel.scrapeNews();
-
-      const filteredEntries = newsItems.filter((entry) => {
-        const titleWords = entry.title.split(" ");
-        return titleWords.length > 5;
-      });
-
+      const data = await this.getNewsJson();
+      const filteredEntries = await EntryController.filterMoreThanWords(
+        5,
+        data
+      );
       const sortedEntries = EntryController.sortByComments(filteredEntries);
-
       res.json(sortedEntries);
     } catch (error) {
       console.error("Error filtering news:", error);
@@ -30,35 +36,68 @@ class EntryController {
     }
   }
 
-  static async filterByTitleLengthAndSortByPoints(req, res) {
+  static async getNewsFilterLessEqualWordsSorted(req, res) {
     try {
-      const newsItems = await EntryModel.scrapeNews();
-
-      const filteredEntries = newsItems.filter((entry) => {
-        const titleWords = entry.title.split(" ");
-        return titleWords.length <= 5;
-      });
-
+      const data = await this.getNewsJson();
+      const filteredEntries = await EntryController.filterLessEqualWords(
+        5,
+        data
+      );
       const sortedEntries = EntryController.sortByPoints(filteredEntries);
-
       res.json(sortedEntries);
     } catch (error) {
       console.error("Error filtering news:", error);
       res.status(500).json({ error: "Internal Server Error" });
     }
+  }
+
+  static filterLessEqualWords(numWords, data) {
+    let filteredEntries = [];
+
+    if (this.isEmptyOrNotArray(data)) {
+      return [];
+    }
+
+    filteredEntries = data.filter((entry) => {
+      const titleWords = entry.title.split(" ");
+      return titleWords.length <= numWords;
+    });
+    return filteredEntries;
+  }
+
+  static filterMoreThanWords(numWords, data) {
+    let filteredEntries = [];
+
+    if (this.isEmptyOrNotArray(data)) {
+      return [];
+    }
+
+    filteredEntries = data.filter((entry) => {
+      const titleWords = entry.title.split(" ");
+      return titleWords.length > numWords;
+    });
+    return filteredEntries;
   }
 
   static sortByComments(entries) {
-    return entries.sort((a, b) => {
-      return parseInt(b.comments) - parseInt(a.comments);
-    });
+    if (this.isEmptyOrNotArray(entries)) {
+      return [];
+    }
+
+    return entries.sort((a, b) => parseInt(b.comments) - parseInt(a.comments));
   }
 
   static sortByPoints(entries) {
-    return entries.sort((a, b) => {
-      return parseInt(b.points) - parseInt(a.points);
-    });
+    if (this.isEmptyOrNotArray(entries)) {
+      return [];
+    }
+
+    return entries.sort((a, b) => parseInt(b.points) - parseInt(a.points));
+  }
+
+  static isEmptyOrNotArray(data) {
+    return !Array.isArray(data) || data.length === 0;
   }
 }
 
-export default EntryController;
+module.exports = EntryController;
