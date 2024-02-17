@@ -1,6 +1,16 @@
-import EntryModel from "../models/EntryModel.js";
+const EntryModel = require("../models/EntryModel.js");
 
 class EntryController {
+  static async getNewsJson() {
+    try {
+      const newsItems = await EntryModel.scrapeNews();
+      return newsItems;
+    } catch (error) {
+      console.error("Error:", error);
+      throw error;
+    }
+  }
+
   static async getNews(req, res) {
     try {
       let newsItems = await EntryModel.scrapeNews();
@@ -13,7 +23,11 @@ class EntryController {
 
   static async getNewsFilterMoreThanWordsSorted(req, res) {
     try {
-      const filteredEntries = await EntryController.filterMoreThanWords(5);
+      const data = await this.getNewsJson();
+      const filteredEntries = await EntryController.filterMoreThanWords(
+        5,
+        data
+      );
       const sortedEntries = EntryController.sortByComments(filteredEntries);
       res.json(sortedEntries);
     } catch (error) {
@@ -24,7 +38,11 @@ class EntryController {
 
   static async getNewsFilterLessEqualWordsSorted(req, res) {
     try {
-      const filteredEntries = await EntryController.filterLessEqualWords(5);
+      const data = await this.getNewsJson();
+      const filteredEntries = await EntryController.filterLessEqualWords(
+        5,
+        data
+      );
       const sortedEntries = EntryController.sortByPoints(filteredEntries);
       res.json(sortedEntries);
     } catch (error) {
@@ -33,20 +51,28 @@ class EntryController {
     }
   }
 
-  static async filterLessEqualWords(numWords) {
+  static filterLessEqualWords(numWords, data) {
     let filteredEntries = [];
-    const newsItems = await EntryModel.scrapeNews();
-    filteredEntries = newsItems.filter((entry) => {
+
+    if (this.isEmptyOrNotArray(data)) {
+      return [];
+    }
+
+    filteredEntries = data.filter((entry) => {
       const titleWords = entry.title.split(" ");
       return titleWords.length <= numWords;
     });
     return filteredEntries;
   }
 
-  static async filterMoreThanWords(numWords) {
+  static filterMoreThanWords(numWords, data) {
     let filteredEntries = [];
-    const newsItems = await EntryModel.scrapeNews();
-    filteredEntries = newsItems.filter((entry) => {
+
+    if (this.isEmptyOrNotArray(data)) {
+      return [];
+    }
+
+    filteredEntries = data.filter((entry) => {
       const titleWords = entry.title.split(" ");
       return titleWords.length > numWords;
     });
@@ -54,12 +80,24 @@ class EntryController {
   }
 
   static sortByComments(entries) {
+    if (this.isEmptyOrNotArray(entries)) {
+      return [];
+    }
+
     return entries.sort((a, b) => parseInt(b.comments) - parseInt(a.comments));
   }
 
   static sortByPoints(entries) {
+    if (this.isEmptyOrNotArray(entries)) {
+      return [];
+    }
+
     return entries.sort((a, b) => parseInt(b.points) - parseInt(a.points));
+  }
+
+  static isEmptyOrNotArray(data) {
+    return !Array.isArray(data) || data.length === 0;
   }
 }
 
-export default EntryController;
+module.exports = EntryController;
