@@ -18,7 +18,8 @@ This will start the server and you can access the application from your web brow
 ## Features
 
 - **News Listing:** Displays a list of the latest news fetched from "https://news.ycombinator.com/".
-- **Filtering:** Users can filter the news by different criteria such as points, comments, etc.
+- **Filtering:** Users can filter the information by the number of words contained in the title of the news
+- **Sorting:** The filtered news can be sorted by the number of comments if it has more than 5 words in the title, while if it has equal to or less than five words, it will be sorted by points.
   
 ## Contribution
 
