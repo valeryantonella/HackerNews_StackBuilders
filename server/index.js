@@ -1,7 +1,7 @@
-import app from "./app.js";
-import EntryController from "./controllers/EntryController.js";
-import express from "express";
-import path from "path";
+const express = require("express");
+const path = require("path");
+const app = require("./app.js");
+const EntryController = require("./controllers/EntryController.js");
 
 app.use(express.static("client"));
 

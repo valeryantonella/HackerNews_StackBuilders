@@ -1,4 +1,4 @@
-import puppeteer from "puppeteer";
+const puppeteer = require("puppeteer");
 
 class EntryModel {
   static async scrapeNews() {
@@ -45,4 +45,4 @@ class EntryModel {
   }
 }
 
-export default EntryModel;
+module.exports = EntryModel;
